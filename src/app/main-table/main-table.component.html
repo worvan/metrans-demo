@@ -26,6 +26,7 @@
 </p-dialog>
 <div class="table-content">
   <p-table [value]="displayData">
+<!-- Used primeng to avoid too much of custom styling and easily introduce some functionality (for example sorting)-->
     <ng-template pTemplate="header">
       <tr>
         <th>User Id</th>
@@ -41,7 +42,7 @@
         <td> {{ task.id }} </td>
         <td> {{ task.title }} </td>
         <td> <p-checkbox [disabled]="true" [binary]="true" [ngModel]="task.completed"></p-checkbox> </td>
-        <td>
+        <td class="item-actions">
           <p-button [label]="'Edit'" (click)="showEditItemDialog(task)"></p-button>
           <p-button [label]="'Delete'" (click)="deleteItem(task.id)"></p-button>
         </td>

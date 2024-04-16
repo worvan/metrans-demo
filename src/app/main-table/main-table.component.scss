@@ -1,13 +1,13 @@
-td {
-  p-button {
-    margin: 5px 10px;
-  }
+.item-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  input, p-button {
+  input {
     margin: 0 10px 10px 10px;
   }
 }
