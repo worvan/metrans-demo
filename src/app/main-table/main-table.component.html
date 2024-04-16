@@ -1,0 +1,52 @@
+<p-dialog [modal]="true" [(visible)]="adding" (onHide)="modalForm.reset()">
+  <ng-template pTemplate="header"> Edit Item </ng-template>
+  <form (ngSubmit)="onSubmit()" [formGroup]="modalForm">
+    <h5>UserId</h5>
+    <input type="number" formControlName="userId" pInputText>
+    <h5>title</h5>
+    <input type="text" formControlName="title" pInputText>
+    <h5>completed</h5>
+    <input type="checkbox" formControlName="completed">
+    <p-button type="submit">Save</p-button>
+  </form>
+</p-dialog>
+<p-dialog [modal]="true" [(visible)]="editting" (onHide)="modalForm.reset()">
+  <ng-template pTemplate="header"> Edit Item </ng-template>
+  <form (ngSubmit)="onSubmit()" [formGroup]="modalForm">
+    <h5>UserId</h5>
+    <input type="number" formControlName="userId" pInputText>
+    <h5>id</h5>
+    <input type="number" [disabled]="true" formControlName="id" pInputText>
+    <h5>title</h5>
+    <input type="text" formControlName="title" pInputText>
+    <h5>completed</h5>
+    <input type="checkbox" formControlName="completed">
+    <p-button type="submit">Save</p-button>
+  </form>
+</p-dialog>
+<div class="table-content">
+  <p-table [value]="displayData">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>User Id</th>
+        <th>Id</th>
+        <th pSortableColumn="title">Title</th>
+        <th>Completed</th>
+        <th><p-button [label]="'Add Task'" (click)="showAddItemDialog()"></p-button></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-task>
+      <tr>
+        <td> {{ getUserRole(task.userId) }} </td>
+        <td> {{ task.id }} </td>
+        <td> {{ task.title }} </td>
+        <td> <p-checkbox [disabled]="true" [binary]="true" [ngModel]="task.completed"></p-checkbox> </td>
+        <td>
+          <p-button [label]="'Edit'" (click)="showEditItemDialog(task)"></p-button>
+          <p-button [label]="'Delete'" (click)="deleteItem(task.id)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+</div>
